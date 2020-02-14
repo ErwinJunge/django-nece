@@ -14,3 +14,20 @@ class Fruit(TranslationModel):
 
     def __str__(self):
         return self.name
+
+
+class Vegetable(TranslationModel):
+    name = models.CharField(max_length=255)
+
+    class Meta:
+        translatable_fields = ('name',)
+
+    def __str__(self):
+        return self.name
+
+
+class Bread(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name

@@ -8,9 +8,10 @@ from django.test import TestCase
 
 from nece import managers
 from nece.exceptions import NonTranslatableFieldError
+from nece.utils import get_translatable_models
 
 from .fixtures import create_fixtures
-from .models import Fruit
+from .models import Fruit, Vegetable
 
 
 class MixinObject(managers.TranslationMixin):
@@ -216,3 +217,7 @@ class TranslationOrderingTest(TestCase):
         for i, fruit in enumerate(fruits):
             self.assertEqual(fruit.name, expected_order[i])
 
+
+class TranslatablesTestCase(TestCase):
+    def test_get_translatable_models(self):
+        self.assertListEqual([Fruit, Vegetable], list(get_translatable_models()))
